@@ -67,6 +67,10 @@ const Routes = () => {
       element: <ProtectedRoute />, // Wrap the component in ProtectedRoute
       children: [
         {
+          path: "/",
+          element: <AlgorithmsList/>,
+        },
+        {
           path: "/home",
           element: <AlgorithmsList/>,
         },
@@ -164,6 +168,10 @@ const Routes = () => {
       path: "/",
       element: <RegularRoute />,
       children: [
+        {
+          path: "/",
+          element: <AlgorithmsList/>,
+        },
         {
           path: "/home",
           element: <AlgorithmsList/>,
