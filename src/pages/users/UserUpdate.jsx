@@ -19,7 +19,7 @@ function UserUpdate() {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const response = (await axios.get('http://localhost:5142/api/users/'+params.userId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId));
         setUser(response.data);
         let roleNum = 1;
         let rolesToAdd = 0;
@@ -52,7 +52,7 @@ function UserUpdate() {
         role: Number(roles.value)
     };
     try {
-        const response = await axios.put("http://localhost:5142/api/users/"+params.userId, userData
+        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/users/"+params.userId, userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

@@ -31,9 +31,9 @@ export default function PlayersList(props) {
 
   let loadTeams = useCallback(async () => {
       try {
-        const response = await axios.get("http://localhost:5142/api/teams");
+        const response = await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/teams");
         setTeams(response.data.sort(function(a, b){return a.id - b.id}));
-        const statResponse = await axios.get('http://localhost:5142/api/statistics');
+        const statResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics');
         localStorage.setItem('statTypes', JSON.stringify(statResponse.data))
     } catch (error) {
         console.log(error);
@@ -46,7 +46,7 @@ export default function PlayersList(props) {
 
   let setTeamInfo = async (teamId) => {
     try {
-      const response = (await axios.get('http://localhost:5142/api/teams/'+teamId));
+      const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+teamId));
       setTargetTeam(response.data)
     } catch (error) {
         console.log(error);
@@ -83,7 +83,7 @@ export default function PlayersList(props) {
         name: name.value,
     };
     try {
-      const response = await axios.put("http://localhost:5142/api/teams/"+targetTeam.id, teamData
+      const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+targetTeam.id, teamData
       // , {headers: {
       //     Authorization: BearerAuth(accessToken)
       //   }}
@@ -98,7 +98,7 @@ export default function PlayersList(props) {
   const handleTeamDelete = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.delete("http://localhost:5142/api/teams/"+targetTeam.id,
+      const response = await axios.delete("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+targetTeam.id,
       // , {headers: {
       //     Authorization: BearerAuth(accessToken)
       //   }}

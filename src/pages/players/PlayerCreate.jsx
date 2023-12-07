@@ -16,7 +16,7 @@ function PlayerCreate() {
 
   useEffect(() => {
     const loadTeams = async () => {
-        const response = (await axios.get('http://localhost:5142/api/teams/'));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'));
         setTeams(response.data);
     }
     loadTeams();
@@ -35,7 +35,7 @@ function PlayerCreate() {
     event.preventDefault();
     let team = "";
     if (document.forms[0].elements.teamName) {
-      const teamResponse = await axios.post("http://localhost:5142/api/teams/", {name: document.forms[0].elements.teamName.value}
+      const teamResponse = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/teams/", {name: document.forms[0].elements.teamName.value}
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}
@@ -50,7 +50,7 @@ function PlayerCreate() {
         role: Number(role.value)
     };
     try {
-        const response = await axios.post("http://localhost:5142/api/teams/"+team+'/players/', playerData
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+team+'/players/', playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

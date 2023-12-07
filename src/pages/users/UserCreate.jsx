@@ -30,7 +30,7 @@ function UserCreate() {
       role: Number(roles.value)
     };
     try {
-        const response = await axios.post("http://localhost:5142/api/users/", userData
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/users/", userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

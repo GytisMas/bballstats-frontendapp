@@ -31,14 +31,13 @@ export const ProtectedRoute = () => {
       const tokenData = {
         refreshToken: refreshToken
       }
-      const response = await axios.post("http://localhost:5142/api/accessToken", tokenData
+      const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/accessToken", tokenData
       , {headers: {
           Authorization: BearerAuth(accessToken)
         }}
       );
       setTokenChecked(true);
       let roles = jwtDecode(response.data.accessToken)["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
-      console.log(roles)
       setTokens(response.data.accessToken, response.data.refreshToken, roles);
     }
 

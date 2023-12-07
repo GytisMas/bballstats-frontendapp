@@ -24,7 +24,7 @@ function Login() {
         password: pass.value
     };
     try {
-        const response = await axios.post("http://localhost:5142/api/login", userData);
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/login", userData);
         setTokens(response.data.accessToken, response.data.refreshToken);
         navigate("/home", { replace: true });
     } catch (error) {

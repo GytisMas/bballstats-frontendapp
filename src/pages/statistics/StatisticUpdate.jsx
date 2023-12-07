@@ -17,7 +17,7 @@ function StatisticUpdate() {
   useEffect(() => {
     const loadPlayer = async () => {
       try {
-        const response = (await axios.get('http://localhost:5142/api/statistics/'+params.statId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId));
         setStatType(response.data);
         setStatVisibility(response.data.status)
       } catch (error) {
@@ -42,7 +42,7 @@ function StatisticUpdate() {
     };
 
     try {
-        const response = await axios.put("http://localhost:5142/api/statistics/"+params.statId, statData
+        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/statistics/"+params.statId, statData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

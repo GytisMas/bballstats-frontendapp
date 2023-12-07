@@ -26,7 +26,7 @@ function Register() {
     };
 
     try {
-        const response = await axios.post("http://localhost:5142/api/register/", userData);
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/register/", userData);
         navigate("/", { replace: true });
     } catch (error) {
         console.log(error);

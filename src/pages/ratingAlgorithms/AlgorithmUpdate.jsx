@@ -19,11 +19,11 @@ function AlgorithmUpdate() {
 
   useEffect(() => {
     const loadStatTypes = async () => {
-        const response = (await axios.get('http://localhost:5142/api/statistics/v'));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/v'));
         setStatTypes(response.data.sort(function(a, b){return a.id - b.id}));
-        const response2 = (await axios.get('http://localhost:5142/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
+        const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
         setAlgorithm(FormulaTrunc(response2.data.formula));
-        const response3 = await axios.get('http://localhost:5142/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId+'/algorithmStatistics');
+        const response3 = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId+'/algorithmStatistics');
         for (let i = 0; i < response3.data.length; i++) {
           let m = response3.data[i]
           setFormulaMembers(formulaMembers => [...formulaMembers, 's'+(formulaMembers.length+1)]);
@@ -80,7 +80,7 @@ function AlgorithmUpdate() {
         promoted: false
     };
     try {
-        const response = await axios.put("http://localhost:5142/api/users/"+params.userId+'/ratingAlgorithms/'+params.algoId, algoData
+        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/users/"+params.userId+'/ratingAlgorithms/'+params.algoId, algoData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

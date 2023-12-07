@@ -27,15 +27,15 @@ export default function AlgorithmGet(props) {
 
   useEffect(() => {
     const loadAlgoStats = async () => {
-        const response = (await axios.get('http://localhost:5142/api/users/' 
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
             + props.userId + '/ratingAlgorithms/' + props.algoId,
         ));
         setAlgorithm(response.data);
-        const response2 = (await axios.get('http://localhost:5142/api/users/' 
+        const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
             + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmStatistics',
         ));
         setAlgoStats(response2.data.sort(function(a, b){return a.id - b.id}));
-        const response3 = (await axios.get('http://localhost:5142/api/users/' 
+        const response3 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
             + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmImpressions',
         )).data;
         let numToAddPos = 0
@@ -60,7 +60,7 @@ export default function AlgorithmGet(props) {
       positive: thumbsUp
     }
 
-    const impressionsResponse = await axios.get('http://localhost:5142/api/users/' 
+    const impressionsResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
     + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmImpressions');
     let update = false;
     let imprId = 0;
@@ -88,7 +88,7 @@ export default function AlgorithmGet(props) {
       return;
     if (!update) {
       try {
-        const response = await axios.post('http://localhost:5142/api/users/' 
+        const response = await axios.post('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
           + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmImpressions', impressionData
           , {headers: {
               Authorization: BearerAuth(accessToken)
@@ -108,7 +108,7 @@ export default function AlgorithmGet(props) {
     } else {
       if (impressionsResponse.data[imprIndex].positive == thumbsUp) {
         try {
-          const response = await axios.delete('http://localhost:5142/api/users/' 
+          const response = await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
             + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmImpressions/' + imprId
             , {headers: {
                 Authorization: BearerAuth(accessToken)
@@ -127,7 +127,7 @@ export default function AlgorithmGet(props) {
         }
       } else {
         try {
-          const response = await axios.put('http://localhost:5142/api/users/' 
+          const response = await axios.put('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
             + props.userId + '/ratingAlgorithms/' + props.algoId + '/algorithmImpressions/' + imprId, impressionData
             , {headers: {
                 Authorization: BearerAuth(accessToken)
@@ -169,7 +169,7 @@ export default function AlgorithmGet(props) {
 
   const handleDeleteModal = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('http://localhost:5142/api/users/'+props.userId+'/ratingAlgorithms/'+props.algoId
+    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+props.userId+'/ratingAlgorithms/'+props.algoId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

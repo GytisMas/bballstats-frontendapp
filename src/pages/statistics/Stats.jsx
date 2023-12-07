@@ -9,7 +9,7 @@ export default function Stats(props) {
       const loadStats = async () => {
         if (!props.isCurator)
           return;
-        const response = await axios.get('http://localhost:5142/api/statistics');
+        const response = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics');
         setStats(response.data.sort(function(a, b){return a.id - b.id}));
       };
 

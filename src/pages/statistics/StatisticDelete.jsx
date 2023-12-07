@@ -17,14 +17,14 @@ function StatisticDelete(props) {
 
   useEffect(() => {
     const getStat = async () => {
-        const response = (await axios.get('http://localhost:5142/api/statistics/'+params.statId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId));
       }
     getStat();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('http://localhost:5142/api/statistics/'+params.statId
+    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

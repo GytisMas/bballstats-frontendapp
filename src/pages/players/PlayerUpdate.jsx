@@ -18,7 +18,7 @@ function PlayerUpdate(props) {
   useEffect(() => {
     const loadPlayer = async () => {
       try {
-        const response = (await axios.get('http://localhost:5142/api/teams/'+params.teamId+'/players/'+params.playerId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId));
         setPlayer(response.data);
       } catch (error) {
           console.log(error);
@@ -44,7 +44,7 @@ function PlayerUpdate(props) {
         role: Number(role.value)
     };
     try {
-        const response = await axios.put("http://localhost:5142/api/teams/"+params.teamId+'/players/'+params.playerId, playerData
+        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+params.teamId+'/players/'+params.playerId, playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

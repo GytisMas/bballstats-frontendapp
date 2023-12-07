@@ -15,7 +15,7 @@ export default function UsersList(props) {
           if (!props.isAdmin)
             return;
           try {
-            const response = await axios.get("http://localhost:5142/api/users"
+            const response = await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/users"
             , {headers: {
               Authorization: BearerAuth(accessToken)
             }}

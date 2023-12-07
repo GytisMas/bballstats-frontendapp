@@ -11,7 +11,7 @@ export default function TeamPlayersGet(props) {
 
   useEffect(() => {
     const loadPlayer = async () => {
-        const response = (await axios.get('http://localhost:5142/api/teams/' 
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/' 
             + props.teamId + '/players/'
         ));
         setPlayers(response.data.sort(function(a, b){return a.id - b.id}));

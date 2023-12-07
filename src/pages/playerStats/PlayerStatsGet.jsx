@@ -9,7 +9,7 @@ export default function PlayerStatsGet(props) {
 
   useEffect(() => {
     const loadPlayer = async () => {
-        const response = (await axios.get('http://localhost:5142/api/teams/' 
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/' 
             + props.teamId + '/players/' + props.playerId + '/playerStatistics'
         ));
         setPlayerStats(response.data.sort(function(a, b){return a.statType - b.statType}));

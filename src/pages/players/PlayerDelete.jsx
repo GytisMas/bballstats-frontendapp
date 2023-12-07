@@ -18,14 +18,14 @@ function PlayerDelete(props) {
 
   useEffect(() => {
     const getPlayer = async () => {
-        const response = (await axios.get('http://localhost:5142/api/teams/'+params.teamId+'/players/'+params.playerId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId));
       }
     getPlayer();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('http://localhost:5142/api/teams/'+params.teamId+'/players/'+params.playerId
+    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

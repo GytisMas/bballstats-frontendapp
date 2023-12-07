@@ -31,14 +31,14 @@ export default function UserGet(props) {
       else if (params.userId)
         userIdLocal = params.userId;
       setUserId(userIdLocal);
-      const userResponse = await axios.get('http://localhost:5142/api/users/' + userIdLocal);
+      const userResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' + userIdLocal);
       setUser(userResponse.data);
       if (props.noAlgorithms)
         return;
-      const algoResponse = await axios.get('http://localhost:5142/api/users/' + userIdLocal + '/ratingAlgorithms/');
+      const algoResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' + userIdLocal + '/ratingAlgorithms/');
       setAlgorithms(algoResponse.data.sort(function(a, b){return a.id - b.id}));
       const statResponse = 
-        Object.fromEntries((await axios.get('http://localhost:5142/api/statistics/'))
+        Object.fromEntries((await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'))
         .data.sort(function(a, b){return a.id - b.id})
         .map((stat) => [stat.id, stat.displayName]));
       setStatTypes(statResponse);

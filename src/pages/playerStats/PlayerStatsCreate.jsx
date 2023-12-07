@@ -18,7 +18,7 @@ function PlayerStatsCreate() {
 
   useEffect(() => {
     const loadStatistics = async () => {
-        const response = (await axios.get('http://localhost:5142/api/statistics/'));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'));
         
         // setFormulaMembers(formulaMembers => [...formulaMembers, 's'+(formulaMembers.length+1)]);
         for (let i = 0; i < response.data.length; i++) {
@@ -48,7 +48,7 @@ function PlayerStatsCreate() {
         value: Number(value.value)
     };
     try {
-        const response = await axios.post("http://localhost:5142/api/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics', playerData
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics', playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

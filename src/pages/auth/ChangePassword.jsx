@@ -20,7 +20,7 @@ function ChangePassword() {
         newpassword: newpass.value
     };
     try {
-        const response = await axios.post("http://localhost:5142/api/changePassword/", userData
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/changePassword/", userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

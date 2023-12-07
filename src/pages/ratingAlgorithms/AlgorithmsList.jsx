@@ -12,10 +12,10 @@ export default function AlgorithmsList() {
       useEffect(() => {
         const loadAlgorithms = async () => {
           try {
-              const response = await axios.get("http://localhost:5142/api/ratingAlgorithms");
+              const response = await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/ratingAlgorithms");
               setAlgorithms(response.data.sort(function(a, b){return b.id - a.id}));
               const statResponse = 
-              Object.fromEntries((await axios.get('http://localhost:5142/api/statistics/'))
+              Object.fromEntries((await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'))
                 .data
                 .map((stat) => [stat.id, stat.displayName]));
               setStatTypes(statResponse);

@@ -26,7 +26,7 @@ function StatisticCreate() {
     };
 
     try {
-        const response = await axios.post("http://localhost:5142/api/statistics/", statData
+        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/statistics/", statData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

@@ -20,7 +20,7 @@ function PlayerStatsUpdate(props) {
   useEffect(() => {
     const loadPlayer = async () => {
       try {
-        const response = (await axios.get('http://localhost:5142/api/statistics/'));        
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'));        
         // setFormulaMembers(formulaMembers => [...formulaMembers, 's'+(formulaMembers.length+1)]);
         for (let i = 0; i < response.data.length; i++) {
           let m = response.data[i]
@@ -28,7 +28,7 @@ function PlayerStatsUpdate(props) {
             setStatistics(statistics => [...statistics, m]);
           }
         }
-        const response2 = (await axios.get('http://localhost:5142/api/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId));
+        const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId));
         setPlayerStat(response2.data);
         setSelectedStatType(response2.data.statisticId)
       } catch (error) {
@@ -55,7 +55,7 @@ function PlayerStatsUpdate(props) {
         value: Number(value.value)
     };
     try {
-        const response = await axios.put("http://localhost:5142/api/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId, playerData
+        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId, playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

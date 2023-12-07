@@ -18,14 +18,14 @@ function AlgorithmDelete(props) {
 
   useEffect(() => {
     const getPlayer = async () => {
-        const response = (await axios.get('http://localhost:5142/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
+        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
       }
     getPlayer();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('http://localhost:5142/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId
+    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));
