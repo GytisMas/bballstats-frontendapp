@@ -1,5 +1,5 @@
 import { useAuth } from "../../provider/Authentication";
-import {BearerAuth, FormMemberStyle, FormulaTrunc} from '../../components/Helpers';
+import {BearerAuth, FormMemberStyle, FormulaSecondHalf} from '../../components/Helpers';
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {FormContainerStyle, FormSumbitStyle} from '../../components/Helpers';
@@ -22,7 +22,7 @@ function AlgorithmUpdate() {
         const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/v'));
         setStatTypes(response.data.sort(function(a, b){return a.id - b.id}));
         const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
-        setAlgorithm(FormulaTrunc(response2.data.formula));
+        setAlgorithm(FormulaSecondHalf(response2.data.formula));
         const response3 = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId+'/algorithmStatistics');
         for (let i = 0; i < response3.data.length; i++) {
           let m = response3.data[i]

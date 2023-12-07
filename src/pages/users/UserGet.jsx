@@ -56,13 +56,15 @@ export default function UserGet(props) {
         <div className="p-5 my-auto">
           <img className="w-48" src={process.env.PUBLIC_URL + '/icons/user-avatar-svgrepo-com.svg'}/>
         </div>
-        <div className='flex flex-col'>
-          <p>User name: {user.username}</p>
+        <div className='flex flex-col justify-start items-start'>
+          <p className="text-xs">User name</p>
+          <p className="text-xl mb-5">{user.username}</p>
           {props.personal && 
           <div className="flex flex-col">
-            <p>Email: {user.email}</p>
-            <a href='/changePassword' className='btn p-1 bg-red-300 border-2 border-black'>Change password</a>
-            <a href='/algorithm/create' className='btn p-1 bg-amber-300 border-2 border-black'>Create new algorithm</a>
+            <p className="text-xs">Email</p>
+            <p className="text-xl mb-5">{user.email}</p>
+            <a href='/changePassword' className='btn p-1 mb-1 bg-blue-300 border-2 border-black'>Change password</a>
+            <a href='/algorithm/create' className='btn p-1 bg-green-300 border-2 border-black'>Create new algorithm</a>
           </div>}
         </div>
       </div>

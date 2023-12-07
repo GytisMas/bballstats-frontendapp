@@ -116,7 +116,7 @@ export default function PlayersList(props) {
         <p className='text-2xl pb-5'>Player statistics</p>
         {props.isModerator && props.isModerator == true &&
           <>
-            <a href='/player/create' className='bth p-1 mx-auto w-48 text-center border-2 border-b-0  bg-amber-300'>Create new player</a>
+            <a href='/player/create' className='bth p-1 mx-auto w-48 text-center border-2 border-b-0  bg-green-300'>Create new player</a>
             <a href="https://www.flaticon.com/free-icons/modify" title="modify icons"></a>
           </>
         }

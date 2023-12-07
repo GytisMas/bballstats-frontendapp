@@ -42,13 +42,16 @@ export default function UsersList(props) {
 
       return (
         <div className='flex flex-col flex-wrap justify-evenly items-center mt-5 pb-5 max-w-xl mx-auto px-2  bg-white border-2 rounded-3xl'>
-          <a href='/user/create' className='bth p-1 bg-amber-300 border-2 my-2 border-black'>Create New User</a>
+          <a href='/user/create' className='bth p-1 bg-green-300 border-2 my-2 border-black'>Create New User</a>
           <table>
-            <tr>
-              <th className='p-2 border-2 text-left'>User name</th>
-              <th className='p-2 border-2 text-left'>Email</th>
-              <th className='p-2 border-2 text-left'>Manage</th>
-            </tr>          
+            <thead>
+              <tr>
+                <th className='p-2 border-2 text-left'>User name</th>
+                <th className='p-2 border-2 text-left'>Email</th>
+                <th className='p-2 border-2 text-left'>Manage</th>
+              </tr>
+            </thead>   
+            <tbody>
           {users.map((user) => (
             <tr key={user.id}>
               <td className='p-2 border-2 text-left'>{user.username}</td>
@@ -59,6 +62,7 @@ export default function UsersList(props) {
               </td>
             </tr>            
           ))}
+            </tbody>       
           </table>
         </div>
       );

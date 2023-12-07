@@ -5,6 +5,7 @@ import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../compon
 import { roles } from '../../components/PlayerRoles';
 import { useNavigate } from "react-router-dom";
 export default function TeamPlayersGet(props) {
+  const [isLoading, setIsLoading] = useState(true);
   const [players, setPlayers] = useState([]);
   const [showStats, setShowStats] = useState([]);
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ export default function TeamPlayersGet(props) {
           Object.fromEntries(response.data.sort(function(a, b){return a.id - b.id})
           .map((player) => [player.id, false]));
         setShowStats(statResponse)
+        setIsLoading(false)
     }
     loadPlayer();
   }, []);
@@ -39,6 +41,8 @@ export default function TeamPlayersGet(props) {
   const handleDelete = (playerId) => {
     navigate('/player/delete/'+props.teamId+'/'+playerId, { replace: true }); 
   }
+  
+  if (isLoading) return "Loading..."
 
   return (
     <div className='flex flex-col justify-start mt-1 items-stretch'>

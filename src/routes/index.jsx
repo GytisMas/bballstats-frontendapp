@@ -32,6 +32,7 @@ import Register from "../pages/auth/Register";
 import ChangePassword from "../pages/auth/ChangePassword";
 import Dashboard from "../components/Dashboard";
 import NotFound from "../components/NotFound";
+import AlgorithmFullPage from "../pages/ratingAlgorithms/AlgorithmFullPage";
 
 const Routes = () => {
   const { accessToken } = useAuth();
@@ -125,6 +126,10 @@ const Routes = () => {
         {
           path: "/player/statDelete/:teamId/:playerId/:statId",
           element: <PlayerStatsDelete />,
+        },
+        {
+          path: "/algorithm/:userId/:algoId",
+          element: <AlgorithmFullPage />,
         },
         {
           path: "/algorithm/create",

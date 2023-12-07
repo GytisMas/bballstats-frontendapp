@@ -2,7 +2,12 @@ export function BearerAuth(auth) {
     return 'Bearer ' + auth;
 }
 
-export function FormulaTrunc(formula) {
+export function FormulaFirstHalf(formula) {
+  let a = formula.split(') (')[0];
+  return a.slice(1, a.length)
+}
+
+export function FormulaSecondHalf(formula) {
     return formula.split(') (')[1].slice(0, -1)
 }
 
@@ -19,4 +24,4 @@ export const FormMemberStyle = "shadow appearance-none border rounded w-full py-
 export const FormHelperStyle = "shadow bg-slate-200 mt-2 border rounded py-2 px-3 text-gray-700 transition duration-75 hover:bg-blue-200 hover:border-blue-200 leading-tight focus:outline-none focus:shadow-outline";
 export const FormSumbitStyle = "shadow max-w-min bg-blue-400 mt-2 border rounded py-2 px-3 text-gray-700 transition duration-75 hover:bg-blue-600 leading-tight focus:outline-none focus:shadow-outline";
 export const FormSumbitStyleCancel = "shadow max-w-min bg-slate-400 border rounded py-2 px-3 text-gray-700 transition duration-75 hover:bg-slate-600 leading-tight focus:outline-none focus:shadow-outline";
-export const FormContainerStyle = 'max-w-xs mx-auto mt-5';
+export const FormContainerStyle = 'max-w-xs mx-auto mt-5 duration-75';

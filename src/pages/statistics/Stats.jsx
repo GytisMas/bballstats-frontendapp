@@ -32,6 +32,7 @@ export default function Stats(props) {
     <div className='flex flex-col flex-wrap justify-evenly items-center mt-5 pb-5 max-w-3xl mx-auto px-2  bg-white border-2 rounded-3xl'>
       <a href='/statistic/create' className='btn p-1 w-48 bg-amber-300 border-2 text-center my-2 border-black'>Create Statistic Type</a>
       <table>
+        <thead>
         <tr>
           <th className='p-2 border-2 text-left'>ID</th>
           <th className='p-2 border-2 text-left'>Name</th>
@@ -39,6 +40,8 @@ export default function Stats(props) {
           <th className='p-2 border-2 text-left'>Visibility Status</th>
           <th className='p-2 border-2 text-left'>Manage</th>
         </tr>
+        </thead>
+        <tbody>
         {stats.map((stat) => (
           <tr key={stat.id}>
             <td className='p-2 border-2 text-right'>{stat.id}</td>
@@ -51,6 +54,7 @@ export default function Stats(props) {
             </td>
           </tr>
         ))}
+        </tbody>
       </table>
     </div>
   );

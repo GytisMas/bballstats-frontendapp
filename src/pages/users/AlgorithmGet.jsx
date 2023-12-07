@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {FormulaTrunc} from '../../components/Helpers';
+import {FormulaSecondHalf} from '../../components/Helpers';
 import { jwtDecode } from 'jwt-decode'
 import { useAuth } from "../../provider/Authentication";
 import {BearerAuth} from '../../components/Helpers';
@@ -8,6 +8,7 @@ import UserGet from './UserGet';
 import { useNavigate } from "react-router-dom";
 import Modal from '../../components/Modal';
 export default function AlgorithmGet(props) {
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [algorithm, setAlgorithm] = useState([]);
   const [algoStats, setAlgoStats] = useState([]);
@@ -51,6 +52,7 @@ export default function AlgorithmGet(props) {
         setImpressionsPos(impressionsPos + numToAddPos);
         setImpressionsNeg(impressionsNeg + numToAddNeg);
         handleImpression(false, true)
+        setIsLoading(false)
     }
     loadAlgoStats();
   }, []);
@@ -177,31 +179,40 @@ export default function AlgorithmGet(props) {
     props.onChange(props.algoId)
   }
 
+  if (isLoading) return "Loading..."
+
   return (
     <div className='w-full'>        
         <div className='w-full border-b-2 flex flex-row justify-between'>
           <button onClick={() => handleInfo(props.algoId)}  className='btn hover:underline text-left text-xl font-bold pb-2'>Rating System #{algorithm.id}</button>
-          <div>
-            {posIsSet ? 
+          <div className='flex flex-row flex-nowrap items-center'>
+            {/* {posIsSet ? 
             <button className='text-xl' onClick={() => handleImpression(true, false)}>{impressionsPos}</button> 
             :<button onClick={() => handleImpression(true, false)}>{impressionsPos}</button> 
             }
             {negIsSet ? 
             <button className='text-xl' onClick={() => handleImpression(false, false)}>{impressionsNeg}</button>
             :<button onClick={() => handleImpression(false, false)}>{impressionsNeg}</button>
-            }
+            } */}
+            <button className='' onClick={() => handleImpression(true, false)}><img className='w-5' src={process.env.PUBLIC_URL + '/icons/thumbs-up.svg'}/></button> 
+            <p className='px-1'>{impressionsPos}</p> 
+            <button selected={negIsSet} onClick={() => handleImpression(false, false)}><img className='w-5' src={process.env.PUBLIC_URL + '/icons/thumbs-down.svg'}/></button>
+            <p className='px-1'>{impressionsNeg}</p> 
           </div>
         </div>
         
         {!props.personal ?
-          <p className='border-b-2 mt-2'>Author: <a href={'/public/user/'+props.userId}><UserGet userId={props.userId} noAlgorithms={true}/></a></p>
+        <div className='border-b-2 mt-2 flex flex-row'>
+          <p className='font-bold pr-3'>Author: </p> 
+          <a href={'/public/user/'+props.userId}><UserGet userId={props.userId} noAlgorithms={true}/></a>
+        </div>
           : null
         }
 
-        {/* <p>{algorithm.formula && FormulaTrunc(algorithm.formula)}</p> */}
+        {/* <p>{algorithm.formula && FormulaSecondHalf(algorithm.formula)}</p> */}
         
         <div className='border-b-2'>
-          <p className='mt-2 underline'>Uses stats including:</p>
+          <p className='mt-2 font-bold'>Uses stats including:</p>
           {algoStats.slice(0, 3).map((algoStat) => (
             <div key={algoStat.id}>
                 <p>{props.sTypes[algoStat.statType]}</p>

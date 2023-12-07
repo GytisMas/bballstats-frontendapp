@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import SideBar from '../components/SideBar';
 import { jwtDecode } from "jwt-decode";
+import Footer from "../components/Footer";
 
 export const ProtectedRoute = () => {
     const [width, setWidth] = useState(window.innerWidth);
@@ -56,13 +57,15 @@ export const ProtectedRoute = () => {
         <div className="Content">
           <Outlet />
         </div>
+      <Footer roles={currentUserRoles}/>
       </div>;
     } else {
       return <div className='Container'>
-        <SideBar pageWrapId={'page-wrap'} outerContainerId={'Container'} />
+        <SideBar roles={currentUserRoles} pageWrapId={'page-wrap'} outerContainerId={'Container'} />
         <div className="Content">
           <Outlet />
         </div>
+      <Footer roles={currentUserRoles}/>
       </div>;
     }
     

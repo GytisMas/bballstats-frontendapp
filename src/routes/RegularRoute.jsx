@@ -4,6 +4,8 @@ import Header from "../components/Header";
 import '../../src/App.css';
 import { useState, useEffect } from "react";
 import SideBar from '../components/SideBar';
+import HeaderFields from "../components/HeaderFields";
+import Footer from "../components/Footer";
 
 export const RegularRoute = () => {  
   const { currentUserRoles } = useAuth();
@@ -26,13 +28,15 @@ export const RegularRoute = () => {
       <div className="Content">
         <Outlet />
       </div>
+      <Footer roles={currentUserRoles}/>
     </div>;
   } else {
     return <div className='Container'>
-      <SideBar pageWrapId={'page-wrap'} outerContainerId={'Container'} />
+      <SideBar roles={currentUserRoles} pageWrapId={'page-wrap'} outerContainerId={'Container'} />
       <div className="Content">
         <Outlet />
       </div>
+      <Footer roles={currentUserRoles}/>
     </div>;
   }
 };

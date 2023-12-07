@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useAuth } from "../../provider/Authentication";
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
-import BearerAuth, { FormulaTrunc } from '../../components/Helpers';
+import BearerAuth, { FormulaSecondHalf } from '../../components/Helpers';
 import UserGet from '../users/UserGet';
 import AlgorithmGet from '../users/AlgorithmGet';
 
