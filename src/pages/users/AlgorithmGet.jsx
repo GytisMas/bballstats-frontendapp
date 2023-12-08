@@ -186,14 +186,6 @@ export default function AlgorithmGet(props) {
         <div className='w-full border-b-2 flex flex-row justify-between'>
           <button onClick={() => handleInfo(props.algoId)}  className='btn hover:underline text-left text-xl font-bold pb-2'>Rating System #{algorithm.id}</button>
           <div className='flex flex-row flex-nowrap items-center'>
-            {/* {posIsSet ? 
-            <button className='text-xl' onClick={() => handleImpression(true, false)}>{impressionsPos}</button> 
-            :<button onClick={() => handleImpression(true, false)}>{impressionsPos}</button> 
-            }
-            {negIsSet ? 
-            <button className='text-xl' onClick={() => handleImpression(false, false)}>{impressionsNeg}</button>
-            :<button onClick={() => handleImpression(false, false)}>{impressionsNeg}</button>
-            } */}
             <button className='' onClick={() => handleImpression(true, false)}><img className='w-5' src={process.env.PUBLIC_URL + '/icons/thumbs-up.svg'}/></button> 
             <p className='px-1'>{impressionsPos}</p> 
             <button selected={negIsSet} onClick={() => handleImpression(false, false)}><img className='w-5' src={process.env.PUBLIC_URL + '/icons/thumbs-down.svg'}/></button>

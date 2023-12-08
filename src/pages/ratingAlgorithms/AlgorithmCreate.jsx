@@ -90,11 +90,13 @@ function AlgorithmCreate() {
   // JSX code for login form
   const renderForm = (
     <div className={FormContainerStyle}>
-      <div className={FormSumbitStyle}>
-        <button onClick={handleAdd}>Add stat</button>
-      </div>
-      <div className={FormSumbitStyle}>
-        <button onClick={handleRemove}>Remove last stat</button>
+      <div className='flex flex-row w-full pb-1 justify-evenly'>
+        <div className={FormSumbitStyle + ' min-h-max max-w-max flex items-center justify-center w-1/3'}>
+          <button onClick={handleAdd}>Add stat</button>
+        </div>
+        <div className={FormSumbitStyle + ' min-h-max max-w-max flex items-center justify-center w-1/3'}>
+          <button onClick={handleRemove}>Remove last stat</button>
+        </div>
       </div>
       <form onSubmit={handleSubmit}>
         {formulaMembers.map((fm) => (

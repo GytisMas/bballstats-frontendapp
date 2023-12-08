@@ -130,7 +130,7 @@ export default function AlgorithmFullPage(props) {
                             <td className='p-2 border-2 text-right'>{i+1}</td>
                             <td className='p-2 border-2 text-left'>{elem.player}</td>
                             <td className='p-2 border-2 text-left'>{elem.team}</td>
-                            <td className='p-2 border-2 text-right'>{elem.rating}</td>
+                            <td className='p-2 border-2 text-right'>{elem.rating.toFixed(2)}</td>
                         </tr>
                         ))}
                         </tbody>
