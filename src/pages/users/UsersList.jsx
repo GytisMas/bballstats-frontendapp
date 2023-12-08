@@ -42,7 +42,7 @@ export default function UsersList(props) {
 
       return (
         <div className='flex flex-col flex-wrap justify-evenly items-center mt-5 pb-5 max-w-xl mx-auto px-2  bg-white border-2 rounded-3xl'>
-          <a href='/user/create' className='bth p-1 bg-green-300 border-2 my-2 border-black'>Create New User</a>
+          <a href='/user/create' className='bth p-1 duration-200 bg-slate-300 hover:bg-green-300 border-2 my-2 border-black'>Create New User</a>
           <table>
             <thead>
               <tr>

@@ -63,18 +63,20 @@ export default function UserGet(props) {
           <div className="flex flex-col">
             <p className="text-xs">Email</p>
             <p className="text-xl mb-5">{user.email}</p>
-            <a href='/changePassword' className='btn p-1 mb-1 bg-blue-300 border-2 border-black'>Change password</a>
-            <a href='/algorithm/create' className='btn p-1 bg-green-300 border-2 border-black'>Create new algorithm</a>
+            <a href='/changePassword' className='btn p-1 mb-1 duration-200 bg-slate-300 hover:bg-blue-300 border-2 border-black'>Change password</a>
+            <a href='/algorithm/create' className='btn p-1 duration-200 bg-slate-300 hover:bg-green-300 border-2 border-black'>Create new algorithm</a>
           </div>}
         </div>
       </div>
-      <div className="flex flex-row flex-wrap mt-5 max-w-6xl mx-auto px-2 pb-10 bg-white border-2 rounded-3xl">
-        {algorithms.map((algo, i) => (
-          <div key={algo.id} className='w-72 mx-10 pt-7'>
-            <AlgorithmGet personal={props.userId ? true : false} onChange={handleRemoveItem} userId={user.id} algoId={algo.id} sTypes={statTypes}/>
-          </div>
-        ))} 
-      </div>           
+      {algorithms.length > 0 &&
+        <div className="flex flex-row flex-wrap mt-5 max-w-6xl mx-auto px-2 pb-10 bg-white border-2 rounded-3xl">
+          {algorithms.map((algo, i) => (
+            <div key={algo.id} className='w-72 mx-10 pt-7'>
+              <AlgorithmGet personal={props.userId ? true : false} onChange={handleRemoveItem} userId={user.id} algoId={algo.id} sTypes={statTypes}/>
+            </div>
+          ))} 
+        </div>  
+      }         
     </div>
   );
 }

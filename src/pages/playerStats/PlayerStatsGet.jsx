@@ -41,7 +41,7 @@ export default function PlayerStatsGet(props) {
     <>
         {props.isModerator && props.isModerator == true &&
           <div className='border-t-4 border-b-2 p-2 w-full'>
-            <a href={'/player/statCreate/'+props.teamId+'/'+props.playerId} className='bth p-1 my-1 bg-amber-300 border-2 '>Create player statistic</a>
+            <a href={'/player/statCreate/'+props.teamId+'/'+props.playerId} className='bth p-1 my-1 duration-200 bg-slate-100 hover:bg-blue-100 border-2 '>Create player statistic</a>
           </div>
         }
         {playerStats.map((playerStat) => (
