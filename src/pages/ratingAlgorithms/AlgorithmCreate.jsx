@@ -91,10 +91,10 @@ function AlgorithmCreate() {
   const renderForm = (
     <div className={FormContainerStyle}>
       <div className='flex flex-row w-full pb-1 justify-evenly'>
-        <div className={FormSumbitStyle + ' min-h-max max-w-max flex items-center justify-center w-1/3'}>
+        <div className={FormSumbitStyle + ' min-h-max min-w-max max-w-max flex items-center justify-center w-1/3'}>
           <button onClick={handleAdd}>Add stat</button>
         </div>
-        <div className={FormSumbitStyle + ' min-h-max max-w-max flex items-center justify-center w-1/3'}>
+        <div className={FormSumbitStyle + ' min-h-max flex items-center justify-center w-1/3'}>
           <button onClick={handleRemove}>Remove last stat</button>
         </div>
       </div>
