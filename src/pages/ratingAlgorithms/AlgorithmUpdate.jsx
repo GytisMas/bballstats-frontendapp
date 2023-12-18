@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import {FormContainerStyle, FormSumbitStyle} from '../../components/Helpers';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function AlgorithmUpdate() {
   let params = useParams();
@@ -19,11 +20,11 @@ function AlgorithmUpdate() {
 
   useEffect(() => {
     const loadStatTypes = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/v'));
+        const response = (await axios.get(APIEndpoint + '/statistics/v'));
         setStatTypes(response.data.sort(function(a, b){return a.id - b.id}));
-        const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
+        const response2 = (await axios.get(APIEndpoint + '/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
         setAlgorithm(FormulaSecondHalf(response2.data.formula));
-        const response3 = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId+'/algorithmStatistics');
+        const response3 = await axios.get(APIEndpoint + '/users/'+params.userId+'/ratingAlgorithms/'+params.algoId+'/algorithmStatistics');
         for (let i = 0; i < response3.data.length; i++) {
           let m = response3.data[i]
           setFormulaMembers(formulaMembers => [...formulaMembers, 's'+(formulaMembers.length+1)]);
@@ -80,7 +81,7 @@ function AlgorithmUpdate() {
         promoted: false
     };
     try {
-        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/users/"+params.userId+'/ratingAlgorithms/'+params.algoId, algoData
+        const response = await axios.put(APIEndpoint + "/users/"+params.userId+'/ratingAlgorithms/'+params.algoId, algoData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

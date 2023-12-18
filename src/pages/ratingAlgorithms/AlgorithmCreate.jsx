@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function AlgorithmCreate() {
   const { accessToken } = useAuth();
@@ -17,7 +18,7 @@ function AlgorithmCreate() {
 
   useEffect(() => {
     const loadStatTypes = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/v'));
+        const response = (await axios.get(APIEndpoint + '/statistics/v'));
         setStatTypes(response.data);
     }
     loadStatTypes();
@@ -70,7 +71,7 @@ function AlgorithmCreate() {
         promoted: false
     };
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/users/"+jwtDecode(accessToken).sub+'/ratingAlgorithms/', algoData
+        const response = await axios.post(APIEndpoint + "/users/"+jwtDecode(accessToken).sub+'/ratingAlgorithms/', algoData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

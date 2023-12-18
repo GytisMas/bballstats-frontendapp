@@ -2,6 +2,7 @@ import { useAuth } from "../../provider/Authentication";
 import {BearerAuth, FormulaFirstHalf, FormulaSecondHalf} from '../../components/Helpers';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import * as math from 'mathjs'
@@ -22,16 +23,16 @@ export default function AlgorithmFullPage(props) {
   
     useEffect(() => {
       const loadAlgoStats = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
+        const response = (await axios.get(APIEndpoint + '/users/' 
             + params.userId + '/ratingAlgorithms/' + params.algoId,
         ));
         setAlgorithm(response.data);
 
-        const userResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' + params.userId);
+        const userResponse = await axios.get(APIEndpoint + '/users/' + params.userId);
         setUser(userResponse.data);
         
         const statResponse = 
-            Object.fromEntries((await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'))
+            Object.fromEntries((await axios.get(APIEndpoint + '/statistics/'))
                 .data
                 .map((stat) => [stat.id, stat.displayName]));
         setAllStats(statResponse)
@@ -42,17 +43,17 @@ export default function AlgorithmFullPage(props) {
             .map((elem) => Number(elem));
         const formulaLoc = FormulaSecondHalf(response.data.formula)
         setFormula(formulaLoc)
-        const response2 = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' 
+        const response2 = (await axios.get(APIEndpoint + '/users/' 
             + params.userId + '/ratingAlgorithms/' + params.algoId + '/algorithmStatistics',
         ));
         setAlgoStats(response2.data.sort(function(a, b){return a.id - b.id}));
         let playerList = []
         setIsLoading(false)
-        const teams = (await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/teams")).data;
+        const teams = (await axios.get(APIEndpoint + "/teams")).data;
         for (let i = 0; i < teams.length; i++) {
-            const players = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+teams[i].id+'/players')).data
+            const players = (await axios.get(APIEndpoint + '/teams/'+teams[i].id+'/players')).data
             for (let j = 0; j < players.length; j++) {
-                const playerStats = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+teams[i].id+'/players/'+players[j].id+'/playerStatistics/'))
+                const playerStats = (await axios.get(APIEndpoint + '/teams/'+teams[i].id+'/players/'+players[j].id+'/playerStatistics/'))
                     .data
                 const playerStatIds = playerStats.map((elem) => elem.statType);
                 let hasAllStats = true

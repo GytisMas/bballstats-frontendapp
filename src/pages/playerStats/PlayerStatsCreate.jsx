@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function PlayerStatsCreate() {
   let params = useParams();
@@ -18,7 +19,7 @@ function PlayerStatsCreate() {
 
   useEffect(() => {
     const loadStatistics = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'));
+        const response = (await axios.get(APIEndpoint + '/statistics/'));
         
         // setFormulaMembers(formulaMembers => [...formulaMembers, 's'+(formulaMembers.length+1)]);
         for (let i = 0; i < response.data.length; i++) {
@@ -48,7 +49,7 @@ function PlayerStatsCreate() {
         value: Number(value.value)
     };
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics', playerData
+        const response = await axios.post(APIEndpoint + "/teams/"+params.teamId+'/players/'+params.playerId+'/playerStatistics', playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

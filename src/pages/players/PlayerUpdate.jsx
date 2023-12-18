@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function PlayerUpdate(props) {
   let params = useParams();
@@ -18,7 +19,7 @@ function PlayerUpdate(props) {
   useEffect(() => {
     const loadPlayer = async () => {
       try {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId));
+        const response = (await axios.get(APIEndpoint + '/teams/'+params.teamId+'/players/'+params.playerId));
         setPlayer(response.data);
       } catch (error) {
           console.log(error);
@@ -44,7 +45,7 @@ function PlayerUpdate(props) {
         role: Number(role.value)
     };
     try {
-        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/teams/"+params.teamId+'/players/'+params.playerId, playerData
+        const response = await axios.put(APIEndpoint + "/teams/"+params.teamId+'/players/'+params.playerId, playerData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

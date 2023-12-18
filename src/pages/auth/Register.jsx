@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function Register() {
   let params = useParams();
@@ -26,7 +27,7 @@ function Register() {
     };
 
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/register/", userData);
+        const response = await axios.post(APIEndpoint + "/register/", userData);
         navigate("/", { replace: true });
     } catch (error) {
         console.log(error);

@@ -3,6 +3,7 @@ import {BearerAuth, FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 function Login() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
@@ -24,7 +25,7 @@ function Login() {
         password: pass.value
     };
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/login", userData);
+        const response = await axios.post(APIEndpoint + "/login", userData);
         setTokens(response.data.accessToken, response.data.refreshToken);
         navigate("/home", { replace: true });
     } catch (error) {

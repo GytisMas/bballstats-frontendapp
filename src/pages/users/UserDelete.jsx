@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function UserDelete(props) {
   let params = useParams();
@@ -13,14 +14,14 @@ function UserDelete(props) {
 
   useEffect(() => {
     const getUser = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId));
+        const response = (await axios.get(APIEndpoint + '/users/'+params.userId));
       }
     getUser();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId
+    const response = (await axios.delete(APIEndpoint + '/users/'+params.userId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

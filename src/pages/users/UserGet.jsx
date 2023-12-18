@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from 'jwt-decode'
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import AlgorithmGet from "./AlgorithmGet";
 import { BearerAuth } from "../../components/Helpers";
 export default function UserGet(props) {
@@ -31,14 +32,14 @@ export default function UserGet(props) {
       else if (params.userId)
         userIdLocal = params.userId;
       setUserId(userIdLocal);
-      const userResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' + userIdLocal);
+      const userResponse = await axios.get(APIEndpoint + '/users/' + userIdLocal);
       setUser(userResponse.data);
       if (props.noAlgorithms)
         return;
-      const algoResponse = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/' + userIdLocal + '/ratingAlgorithms/');
+      const algoResponse = await axios.get(APIEndpoint + '/users/' + userIdLocal + '/ratingAlgorithms/');
       setAlgorithms(algoResponse.data.sort(function(a, b){return a.id - b.id}));
       const statResponse = 
-        Object.fromEntries((await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'))
+        Object.fromEntries((await axios.get(APIEndpoint + '/statistics/'))
         .data.sort(function(a, b){return a.id - b.id})
         .map((stat) => [stat.id, stat.displayName]));
       setStatTypes(statResponse);

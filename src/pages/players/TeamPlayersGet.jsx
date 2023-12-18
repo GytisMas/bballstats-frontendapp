@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import PlayerStatsGet from '../playerStats/PlayerStatsGet';
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
 import { roles } from '../../components/PlayerRoles';
@@ -12,7 +13,7 @@ export default function TeamPlayersGet(props) {
 
   useEffect(() => {
     const loadPlayer = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/' 
+        const response = (await axios.get(APIEndpoint + '/teams/' 
             + props.teamId + '/players/'
         ));
         setPlayers(response.data.sort(function(a, b){return a.id - b.id}));

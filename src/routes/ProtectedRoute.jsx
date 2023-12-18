@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import SideBar from '../components/SideBar';
 import { jwtDecode } from "jwt-decode";
 import Footer from "../components/Footer";
+import { APIEndpoint } from "../components/Helpers";
 
 export const ProtectedRoute = () => {
     const [width, setWidth] = useState(window.innerWidth);
@@ -32,7 +33,7 @@ export const ProtectedRoute = () => {
       const tokenData = {
         refreshToken: refreshToken
       }
-      const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/accessToken", tokenData
+      const response = await axios.post(APIEndpoint + "/accessToken", tokenData
       , {headers: {
           Authorization: BearerAuth(accessToken)
         }}
@@ -44,6 +45,7 @@ export const ProtectedRoute = () => {
 
     if (!tokenChecked) {
       if (isTokenInvalid(refreshToken)) {
+        setTokens();
         // If not authenticated, redirect to the login page
         return <Navigate to='/login' />;
       } else {

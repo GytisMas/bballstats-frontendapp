@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function ChangePassword() {
   const { accessToken } = useAuth();
@@ -20,7 +21,7 @@ function ChangePassword() {
         newpassword: newpass.value
     };
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/changePassword/", userData
+        const response = await axios.post(APIEndpoint + "/changePassword/", userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

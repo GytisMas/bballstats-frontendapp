@@ -4,6 +4,7 @@ import {BearerAuth, FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function StatisticUpdate() {
   let params = useParams();
@@ -17,7 +18,7 @@ function StatisticUpdate() {
   useEffect(() => {
     const loadPlayer = async () => {
       try {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId));
+        const response = (await axios.get(APIEndpoint + '/statistics/'+params.statId));
         setStatType(response.data);
         setStatVisibility(response.data.status)
       } catch (error) {
@@ -42,7 +43,7 @@ function StatisticUpdate() {
     };
 
     try {
-        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/statistics/"+params.statId, statData
+        const response = await axios.put(APIEndpoint + "/statistics/"+params.statId, statData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

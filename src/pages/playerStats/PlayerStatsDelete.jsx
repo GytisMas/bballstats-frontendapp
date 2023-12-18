@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function PlayerStatsDelete(props) {
   let params = useParams();
@@ -18,14 +19,14 @@ function PlayerStatsDelete(props) {
 
   useEffect(() => {
     const getPlayer = async () => {
-      const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId));
+      const response = (await axios.get(APIEndpoint + '/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId));
     }
     getPlayer();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId
+    const response = (await axios.delete(APIEndpoint + '/teams/'+params.teamId+'/players/'+params.playerId+'/playerStatistics/'+params.statId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function AlgorithmDelete(props) {
   let params = useParams();
@@ -18,14 +19,14 @@ function AlgorithmDelete(props) {
 
   useEffect(() => {
     const getPlayer = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
+        const response = (await axios.get(APIEndpoint + '/users/'+params.userId+'/ratingAlgorithms/'+params.algoId));
       }
     getPlayer();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId+'/ratingAlgorithms/'+params.algoId
+    const response = (await axios.delete(APIEndpoint + '/users/'+params.userId+'/ratingAlgorithms/'+params.algoId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode'
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import { useAuth } from "../../provider/Authentication";
 import {BearerAuth} from '../../components/Helpers';
 import { useNavigate } from "react-router-dom";
@@ -15,7 +16,7 @@ export default function UsersList(props) {
           if (!props.isAdmin)
             return;
           try {
-            const response = await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/users"
+            const response = await axios.get(APIEndpoint + "/users"
             , {headers: {
               Authorization: BearerAuth(accessToken)
             }}

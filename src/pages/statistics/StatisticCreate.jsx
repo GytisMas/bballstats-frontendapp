@@ -4,6 +4,7 @@ import {FormContainerStyle, FormSumbitStyle} from '../../components/Helpers';
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function StatisticCreate() {
   const { accessToken } = useAuth();
@@ -26,7 +27,7 @@ function StatisticCreate() {
     };
 
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/statistics/", statData
+        const response = await axios.post(APIEndpoint + "/statistics/", statData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

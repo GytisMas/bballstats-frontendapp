@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function StatisticDelete(props) {
   let params = useParams();
@@ -17,14 +18,14 @@ function StatisticDelete(props) {
 
   useEffect(() => {
     const getStat = async () => {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId));
+        const response = (await axios.get(APIEndpoint + '/statistics/'+params.statId));
       }
     getStat();
   }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const response = (await axios.delete('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'+params.statId
+    const response = (await axios.delete(APIEndpoint + '/statistics/'+params.statId
       , {headers: {
         Authorization: BearerAuth(accessToken)
       }}));

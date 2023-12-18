@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import NotFound from '../../components/NotFound';
 export default function Stats(props) {
   const [stats, setStats] = useState([]);
@@ -9,7 +10,7 @@ export default function Stats(props) {
       const loadStats = async () => {
         if (!props.isCurator)
           return;
-        const response = await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics');
+        const response = await axios.get(APIEndpoint + '/statistics');
         setStats(response.data.sort(function(a, b){return a.id - b.id}));
       };
 

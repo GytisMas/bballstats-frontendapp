@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import { useAuth } from "../../provider/Authentication";
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
 import BearerAuth, { FormulaSecondHalf } from '../../components/Helpers';
@@ -12,10 +13,10 @@ export default function AlgorithmsList() {
       useEffect(() => {
         const loadAlgorithms = async () => {
           try {
-              const response = await axios.get("https://whale-app-wxvqi.ondigitalocean.app/api/ratingAlgorithms");
+              const response = await axios.get(APIEndpoint + "/ratingAlgorithms");
               setAlgorithms(response.data.sort(function(a, b){return b.id - a.id}));
               const statResponse = 
-              Object.fromEntries((await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/statistics/'))
+              Object.fromEntries((await axios.get(APIEndpoint + '/statistics/'))
                 .data
                 .map((stat) => [stat.id, stat.displayName]));
               setStatTypes(statResponse);

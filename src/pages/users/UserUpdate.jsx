@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 import {FormContainerStyle, FormMemberStyle, FormSumbitStyle} from '../../components/Helpers';
 
 function UserUpdate() {
@@ -19,7 +20,7 @@ function UserUpdate() {
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const response = (await axios.get('https://whale-app-wxvqi.ondigitalocean.app/api/users/'+params.userId));
+        const response = (await axios.get(APIEndpoint + '/users/'+params.userId));
         setUser(response.data);
         let roleNum = 1;
         let rolesToAdd = 0;
@@ -52,7 +53,7 @@ function UserUpdate() {
         role: Number(roles.value)
     };
     try {
-        const response = await axios.put("https://whale-app-wxvqi.ondigitalocean.app/api/users/"+params.userId, userData
+        const response = await axios.put(APIEndpoint + "/users/"+params.userId, userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}

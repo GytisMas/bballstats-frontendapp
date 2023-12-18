@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { roles } from "../../components/PlayerRoles";
 import axios from 'axios';
+import { APIEndpoint } from "../../components/Helpers";
 
 function UserCreate() {
   let params = useParams();
@@ -30,7 +31,7 @@ function UserCreate() {
       role: Number(roles.value)
     };
     try {
-        const response = await axios.post("https://whale-app-wxvqi.ondigitalocean.app/api/users/", userData
+        const response = await axios.post(APIEndpoint + "/users/", userData
         , {headers: {
             Authorization: BearerAuth(accessToken)
           }}
